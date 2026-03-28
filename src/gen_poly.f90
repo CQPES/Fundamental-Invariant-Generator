@@ -1,14 +1,20 @@
+!> 哈基米说这个是包装器, 生成当前目标阶数下所有由低阶 FI 相乘得到的组合项
 subroutine gen_poly(degree, np)
     use mod_genpoly, only: ntotb
     implicit none
     integer, intent(in) :: degree
     integer, intent(out) :: np
     integer :: a(degree)
-    ntotb = 0
+    ntotb = 0  ! 全局变量: 重置当前生成的组合项总数
+    !> 启动递归的整数拆分算法
+    !> 从 degree 开始, 向下寻找所有的组合可能
     call intsplitx(degree, 1, a, degree)
-    np = ntotb
+    np = ntotb  ! 返回生成的组合项总数
 end subroutine gen_poly
 
+!> 整数拆分
+!> 用递归枚举所有和为 degree 的正整数序列
+!> 比如 n = 4, 可以拆成 3 + 1, 2 + 2, 2 + 1 + 1, 1 + 1 + 1 + 1
 recursive subroutine intsplitx(n, index, ax, degree)
     ! split integer with decrement number
     ! remove the first one
@@ -42,7 +48,12 @@ recursive subroutine intsplitx(n, index, ax, degree)
                         end do
                     end do
                 elseif (ntotal .gt. 0) then
-                    if (ntotb + ntotal*indexb .gt. maxb) write (*, *) " Error: ntotb"
+                    !> modified by mizu-bai
+                    if (ntotb + ntotal*indexb .gt. maxb) then
+                        write (*, *)" Error: ntotb"
+                        stop
+                    end if
+                    !> end modify
                     do j = 1, indexb
                         id1 = ntotal*(j - 1) + 1 + ntotb; id2 = ntotal*j + ntotb
                         btotal(1:nx, id1:id2) = btotal(1:nx, 1 + ntotb:ntotal + ntotb)
@@ -74,6 +85,9 @@ recursive subroutine intsplitx(n, index, ax, degree)
     end do
 end subroutine intsplitx
 
+!> 带放回的组合生成
+!> 从集合 {1, 2, 3, ..., n} 中选取 m 个元素, 允许重复, 且不考虑顺序
+!> 相当于在计算 n 个变量的 m 次齐次多项式的项数
 recursive subroutine comb_order(t, index, indexb, m, n, a)
     use mod_genpoly, only: b
     ! select M elements in a set

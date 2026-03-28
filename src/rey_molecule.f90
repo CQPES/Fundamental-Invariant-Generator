@@ -1,3 +1,4 @@
+!> 哈基米说这是置换群与 Reynolds 算子生成器, 生成同种原子之间的全排列置换矩阵
 subroutine rey_molecule
     implicit none
     integer :: natom, nkind, ir
@@ -19,8 +20,11 @@ subroutine rey_molecule
         write (601, '(a2\)') adjustl(label(i))
     end do
     write (601, *) ""
+    !> 计算原子种类和每种的数量
     call kinds(natom, label, nkind, id, idx, nperm)
+    !> 枚举核间距 rij 变剔除对称性上的冗余
     call index_r(natom, nperm, idx, ir, idr)
+    !> 执行全排列组合和直积, 最终生 Reynolds 置换映射矩阵 mat_rey
     call permutation(natom, nkind, ir, id, nperm, idr)
     deallocate (label, id, idx, nperm, idr)
     !---------------------------------------------------------

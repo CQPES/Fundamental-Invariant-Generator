@@ -26,7 +26,7 @@ recursive subroutine intsplit(n, index, a)
     integer :: x(nr) !
     if (n .le. 0) then
         call combinations(1, nr - index + 1 + 1, 1, index - 1, nr, a(1:index - 1), x)
-    !  write(*,'(100(1x,i3))') a(1:index-1)
+        !  write(*,'(100(1x,i3))') a(1:index-1)
         return
     end if
     do i = n, 1, -1
