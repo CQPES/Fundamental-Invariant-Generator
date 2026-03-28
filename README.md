@@ -16,14 +16,14 @@ Requirements: Intel's `ifort` compiler and MKL math library.
 
 - With `make`
 
-```
+```bash
 $ mkdir obj mod bin
 $ make
 ```
 
 - With `cmake`
 
-```
+```bash
 $ mkdir build
 $ cd build
 $ FC=ifort .. -DCMAKE_BUILD_TYPE=Release
@@ -47,7 +47,7 @@ Exit indices:
 
 Run:
 
-```
+```bash
 $ ./invariants < input.txt
 ```
 
