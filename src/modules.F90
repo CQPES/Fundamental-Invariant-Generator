@@ -1,5 +1,5 @@
 !> Reynolds 算子投影
-!> ngroup 是对称群的阶，即置换操作的总数
+!> ngroup 是对称群的阶, 即置换操作的总数
 !> mat_rey 存储的是 Reynolds 算子的置换映射矩阵
 !> 这个矩阵定义了同原子置换（Permutation）是如何打乱并重组变量索引的
 module mod_reynolds
@@ -41,7 +41,7 @@ module mod_fi
     integer, allocatable :: nexit(:)
 end module mod_fi
 
-!> 最多只支持 20 个原子，因为 20 * (20 - 1) / 2 = 190
+!> 最多只支持 20 个原子, 因为 20 * (20 - 1) / 2 = 190
 module mod_molecule
     implicit none
     integer :: nrs

@@ -79,7 +79,7 @@ subroutine fundamental
         end if
         !> 写日志
         write (701, '(i3," fundamental invariants, ",i4," symmetric polynomials in degree: ",i3)') norder(i), np, i
-        !> 如果在这一阶一个新的 FI 都没找到，那说明空间已经闭合或饱和, 不用再生成了
+        !> 如果在这一阶一个新的 FI 都没找到, 那说明空间已经闭合或饱和, 不用再生成了
         if (norder(i) .eq. 0) exit; 
     end do
     !> 清理
