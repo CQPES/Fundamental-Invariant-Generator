@@ -32,6 +32,8 @@ $ make
 
 ## Usage
 
+### Generate New FIs
+
 Input file:
 
 ```
@@ -49,6 +51,31 @@ Run:
 
 ```bash
 $ ./invariants < input.txt
+```
+
+Use the environment variable `MKL_NUM_THREADS` to control parallelism in the `dgels` subroutine.
+
+### Convert to JaxPIP Compatible JSON
+
+**NOTE: ALL FIS START FROM CONSTANT 1.0 TO KEEP COMPATIBILITY WITH MSA'S STYLE!!!**
+
+```bash
+$ python3 utils/dat_polys2json.py -h
+usage: dat_polys2json.py [-h] -n NUM_ATOMS [--gz] dat_polys json_file
+
+Convert FI dat.polys to JaxPIP .json
+
+positional arguments:
+  dat_polys             Path to input dat.polys file
+  json_file             Path to output json file, recommend 'FI_AxByCz.json.gz'
+
+options:
+  -h, --help            show this help message and exit
+  -n NUM_ATOMS, --num_atoms NUM_ATOMS
+                        Number of atoms
+  --gz                  Compress with gzip
+$ python3 utils/dat_polys2json.py /path/to/dat.polys [/path/to/FI.json | /path/to/FI.json.gz] [--gz]
+$ jaxpip show [/path/to/FI.json | /path/to/FI.json.gz]
 ```
 
 ## License

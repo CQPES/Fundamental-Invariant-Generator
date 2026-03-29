@@ -5,6 +5,7 @@ obj/
 
 # outputs
 dat.*
+datx.*
 
 # Prerequisites
 *.d
