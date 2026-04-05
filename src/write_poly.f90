@@ -124,7 +124,7 @@ subroutine write_poly(id, x, coef, np)
 
             if (nchar .gt. 80) then
                 nchar = 0
-                write (705, *) "&"
+                write (705, '(" &")')
             end if
             
             write (705, '("+")', advance='no')
@@ -132,10 +132,10 @@ subroutine write_poly(id, x, coef, np)
         end if
     end do
     
-    write (703, *) ""
-    write (717, *) ""
-    write (705, *) ""
-    write (711, *) ""
+    write (703, '("")')
+    write (717, '("")')
+    write (705, '("")')
+    write (711, '("")')
 end subroutine write_poly
 
 !> 哈基米帮忙重构了一下，主要解决手动处理字符串宽度的问题
