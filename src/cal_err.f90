@@ -109,7 +109,7 @@ subroutine cal_error(nx0, ny0, np, nb, r0, degree)
                 end do
             end do
             !> 打印找到新的 FI 了
-          write (702, '(i3,"*  ",i5,",",i5," in degree ",(i2),",",2x,3(1x,i6),2xes23.16)') nfi, iloop, np, degree, nb, nx, ny, error
+          write (702, '(i6,"*  ",i5,",",i5," in degree ",(i2),",",2x,3(1x,i6),2xes23.16)') nfi, iloop, np, degree, nb, nx, ny, error
             !> 检查是否已经找到了用户在输入文件里指定的当前阶数所需要的总的 FI 的数量, 要不要退出
             i0 = 1
             do i = 1, nexit(0)
@@ -131,7 +131,7 @@ subroutine cal_error(nx0, ny0, np, nb, r0, degree)
             !  write(713,*) ""
         else
             !> 残差极小, 说明它是冗余项, 直接扔掉, 只打印日志
-            write (702, '(6x,i5,",",i5," in degree ",(i2),","2x,3(1x,i6),2xes23.16)') iloop, np, degree, nb, nx, ny, error
+            write (702, '(9x,i5,",",i5," in degree ",(i2),","2x,3(1x,i6),2xes23.16)') iloop, np, degree, nb, nx, ny, error
         end if
     end do
 end subroutine cal_error

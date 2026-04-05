@@ -17,7 +17,7 @@ subroutine rey_molecule
     read (*, *); read (*, *) label(1:natom) ! label of atoms, as A A A B B C ...
     write (601, '("labels of atoms:")')
     do i = 1, natom
-        write (601, '(a2\)') adjustl(label(i))
+        write (601, '(a2)', advance='no') adjustl(label(i))
     end do
     write (601, *) ""
     !> 计算原子种类和每种的数量
@@ -214,7 +214,7 @@ recursive subroutine directpro(k, nkind, ntotal, natom, id, ip, ipall)
     integer :: i, nperm, iloop
     if (k .gt. nkind) then
         do iloop = 1, natom
-            write (200, '((i3\))') ipall(iloop)
+            write (200, '((i3))', advance='no') ipall(iloop)
         end do
         write (200, *) ""
         return
@@ -259,7 +259,7 @@ subroutine get_reynolds(natom, nkind, ntotal, ir, idr)
             end do
         end do
         do iloop = 1, ir
-            write (100, '((i3\))') idout(iloop)
+            write (100, '((i3))', advance='no') idout(iloop)
             mat_rey(iloop, k) = idout(iloop)
         end do
         write (100, *) ""
@@ -272,7 +272,7 @@ subroutine get_reynolds(natom, nkind, ntotal, ir, idr)
                 end if
             end do
             do iloop = 1, ir
-                write (200, '((1x,i1\))') idmat(iloop, i)
+                write (200, '((1x,i1))', advance='no') idmat(iloop, i)
             end do
             write (200, *) ""
         end do

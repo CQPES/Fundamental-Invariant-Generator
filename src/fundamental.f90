@@ -19,7 +19,7 @@ subroutine fundamental
     read (*, *); read (*, *) nexit(1:i)
     write (601, '("exit index of FI:")')
     do i = 1, nexit(0)
-        write (601, '(i4\)') nexit(i)
+        write (601, '(i4)', advance='no') nexit(i)
     end do
     allocate (norder(degree))
     allocate (rtest(nr), mons(2, nr, maxv), polys(0:nr, ngroup))
