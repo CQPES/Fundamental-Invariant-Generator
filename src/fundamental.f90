@@ -63,7 +63,7 @@ subroutine fundamental
             do j = 1, nfi
                 !> 直接写文件里
                 call write_poly(fmonid(j), fmons(1, 1:fmonid(j) - 1, j), fmons(2, 1:fmonid(j) - 1, j), j)
-                write (702, '(i3,"*  ",i5,",",i5," in degree ",(i2),",")') j, j, np, i
+                write (702, '(i6,"*  ",i5,",",i5," in degree ",(i2),",")') j, j, np, i
             end do
         else if (i .gt. 1) then
             !> 先生成已知的 FI 组合项 (secondary invariants)
